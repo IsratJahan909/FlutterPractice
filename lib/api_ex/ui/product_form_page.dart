@@ -1,5 +1,5 @@
-import 'package:ay_app/api_ex/product.dart';
-import 'package:ay_app/api_ex/product_api.dart';
+import 'package:ay_app/api_ex/models/product.dart';
+import 'package:ay_app/api_ex/services/product_api.dart';
 import 'package:flutter/material.dart';
 
 

@@ -1,4 +1,4 @@
-import 'package:ay_app/api_ex/login_page.dart';
+import 'package:ay_app/api_ex/ui/splash_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      home: const LoginPage(), // start with LoginPage
+      home: const SplashPage(), 
     );
   }
 }

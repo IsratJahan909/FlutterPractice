@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static const String baseUrl = "http://192.168.20.20:8080/api/auth";
+  static const String baseUrl = "https://rander-secqurity-3.onrender.com/api/auth";
 
   /// Login with username & password
   /// Returns true if login successful
@@ -40,4 +40,36 @@ class AuthService {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString('jwtToken');
   }
+
+
+
+  /// Build headers for HTTP requests
+  Future<Map<String, String>> headers({bool auth = false}) async {
+    final token = await getToken();
+      // final headers = await AuthService.getAuthHeaders();
+
+    if (auth && (token == null || token.isEmpty)) {
+      throw Exception("No JWT token found. Please login first.");
+    }
+
+    final headers = {
+      "Content-Type": "application/json",
+      if (auth) "Authorization": "Bearer $token",
+    };
+
+    print("==== HTTP Headers ====");
+    headers.forEach((k, v) => print("$k: $v"));
+    print("=====================");
+
+    return headers;
+  }
+
+    // Get authorization headers for API calls
+  // static Future<Map<String, String>> getAuthHeaders() async {
+  //   final token = await getToken();
+  //   return {
+  //     'Content-Type': 'application/json',
+  //     'Authorization': 'Bearer $token',
+  //   };
+  // }
 }

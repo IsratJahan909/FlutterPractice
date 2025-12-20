@@ -6,6 +6,8 @@ void main() {
 }
 
 class MessageDemoApp extends StatelessWidget {
+  const MessageDemoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class MessageDemoApp extends StatelessWidget {
 }
 
 class MessageHomePage extends StatelessWidget {
+  const MessageHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

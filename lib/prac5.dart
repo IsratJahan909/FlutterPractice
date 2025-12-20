@@ -5,6 +5,8 @@ void main() {
 }
 
 class AllWidgetsDemo extends StatelessWidget {
+  const AllWidgetsDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,6 +19,8 @@ class AllWidgetsDemo extends StatelessWidget {
 class HomePage extends StatelessWidget {
   final TextEditingController inputController = TextEditingController();
 
+  HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +28,9 @@ class HomePage extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
+              decoration: BoxDecoration(color: Colors.deepPurple),
               child: Text("Welcome Saiful!",
                   style: TextStyle(fontSize: 22, color: Colors.white)),
-              decoration: BoxDecoration(color: Colors.deepPurple),
             ),
             ListTile(title: Text("Home")),
             ListTile(title: Text("Profile")),
@@ -137,7 +141,7 @@ class HomePage extends StatelessWidget {
 
 
             // ---------------- LISTVIEW (inside column) ----------------
-            Container(
+            SizedBox(
               height: 150,
               child: ListView(
                 children: [

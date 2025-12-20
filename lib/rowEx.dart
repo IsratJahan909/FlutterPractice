@@ -5,6 +5,8 @@ void main() {
 }
 
 class MultiWidgetRowApp extends StatelessWidget {
+  const MultiWidgetRowApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,6 +17,8 @@ class MultiWidgetRowApp extends StatelessWidget {
 }
 
 class MultiWidgetRowPage extends StatefulWidget {
+  const MultiWidgetRowPage({super.key});
+
   @override
   State<MultiWidgetRowPage> createState() => _MultiWidgetRowPageState();
 }

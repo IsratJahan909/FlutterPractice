@@ -1,44 +1,47 @@
 import 'dart:convert';
+import 'package:ay_app/api_ex/services/auth_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import '../api_ex/product.dart';
+import '../models/product.dart';
 
 class ProductApiService {
-  static const String baseUrl = "http://192.168.20.20:8080/api/products";
+  static const String baseUrl =
+      "https://rander-secqurity-3.onrender.com/api/products";
 
-  /// Get JWT token from SharedPreferences
-  Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('jwtToken');
-  }
+  final authService = AuthService();
 
-  
+  // /// Get JWT token from SharedPreferences
+  // Future<String?> getToken() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   return prefs.getString('jwtToken');
+  // }
 
-  /// Build headers for HTTP requests
-  Future<Map<String, String>> _headers({bool auth = false}) async {
-    final token = await getToken();
+  // /// Build headers for HTTP requests
+  // Future<Map<String, String>> _headers({bool auth = false}) async {
+  //   final token = await getToken();
+  //   // final headers = await AuthService.getAuthHeaders();
 
-    if (auth && (token == null || token.isEmpty)) {
-      throw Exception("No JWT token found. Please login first.");
-    }
+  //   if (auth && (token == null || token.isEmpty)) {
+  //     throw Exception("No JWT token found. Please login first.");
+  //   }
 
-    final headers = {
-      "Content-Type": "application/json",
-      if (auth) "Authorization": "Bearer $token",
-    };
+  //   final headers = {
+  //     "Content-Type": "application/json",
+  //     if (auth) "Authorization": "Bearer $token",
+  //   };
 
-    print("==== HTTP Headers ====");
-    headers.forEach((k, v) => print("$k: $v"));
-    print("=====================");
+  //   print("==== HTTP Headers ====");
+  //   headers.forEach((k, v) => print("$k: $v"));
+  //   print("=====================");
 
-    return headers;
-  }
+  //   return headers;
+  // }
 
   /// 🔓 GET all products
   Future<List<Product>> getAllProducts() async {
     final res = await http.get(
       Uri.parse(baseUrl),
-      headers: await _headers(auth: true),
+      headers: await authService.headers(auth: true),
     );
 
     print('---------------URI-- ${Uri.parse(baseUrl)}');
@@ -59,7 +62,7 @@ class ProductApiService {
   Future<Product> getProductById(int id) async {
     final res = await http.get(
       Uri.parse("$baseUrl/$id"),
-      headers: await _headers(auth: true),
+      headers: await authService.headers(auth: true),
     );
 
     print("GET /products/$id -> Status: ${res.statusCode}");
@@ -80,7 +83,7 @@ class ProductApiService {
   Future<Product> createProduct(Product product) async {
     final res = await http.post(
       Uri.parse(baseUrl),
-      headers: await _headers(auth: true),
+      headers: await authService.headers(auth: true),
       body: jsonEncode(product.toJson()),
     );
 
@@ -100,7 +103,7 @@ class ProductApiService {
   Future<Product> updateProduct(int id, Product product) async {
     final res = await http.put(
       Uri.parse("$baseUrl/$id"),
-      headers: await _headers(auth: true),
+      headers: await authService.headers(auth: true),
       body: jsonEncode(product.toJson()),
     );
 
@@ -120,7 +123,7 @@ class ProductApiService {
   Future<void> deleteProduct(int id) async {
     final res = await http.delete(
       Uri.parse("$baseUrl/$id"),
-      headers: await _headers(auth: true),
+      headers: await authService.headers(auth: true),
     );
 
     print("DELETE /products/$id -> Status: ${res.statusCode}");

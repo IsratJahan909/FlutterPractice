@@ -5,6 +5,8 @@ void main() {
 }
 
 class ECommerceApp extends StatelessWidget {
+  const ECommerceApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,6 +22,8 @@ class ECommerceApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }

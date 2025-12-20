@@ -111,6 +111,8 @@ class _YoutubeState extends State<Youtube> {
 }
 
 class YoutubeBottomNav extends StatefulWidget {
+  const YoutubeBottomNav({super.key});
+
   @override
   State<YoutubeBottomNav> createState() => _YoutubeBottomNavState();
 }
@@ -168,6 +170,8 @@ class _YoutubeBottomNavState extends State<YoutubeBottomNav> {
 }
 
 class ShortsPage extends StatelessWidget {
+  const ShortsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -177,6 +181,8 @@ class ShortsPage extends StatelessWidget {
 }
 
 class AddPage extends StatelessWidget {
+  const AddPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -186,6 +192,8 @@ class AddPage extends StatelessWidget {
 }
 
 class SubscriptionsPage extends StatelessWidget {
+  const SubscriptionsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -195,6 +203,8 @@ class SubscriptionsPage extends StatelessWidget {
 }
 
 class LibraryPage extends StatelessWidget {
+  const LibraryPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(child: Text("Library 📚", style: TextStyle(fontSize: 25)));

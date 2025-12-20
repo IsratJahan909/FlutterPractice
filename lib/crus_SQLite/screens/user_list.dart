@@ -15,7 +15,7 @@ class UserList extends StatefulWidget {
 class _UserListState extends State<UserList> {
   List<User> users = [];
 
-  fetchUsers() async {
+  Future<void> fetchUsers() async {
     users = await DatabaseHelper().getUsers();
     setState(() {});
   }

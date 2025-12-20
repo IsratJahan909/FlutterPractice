@@ -43,11 +43,24 @@ dependencies:
   path: ^1.9.1
   http: ^1.6.0
   shared_preferences: ^2.1.0
+  liquid_swipe: ^3.1.0
 
+
+  # firebase_core: ^2.7.1
+  # firebase_auth: ^4.2.10
+  # cloud_firestore: ^4.4.4
+  # firebase_database: ^10.0.15
+  # fluttertoast: ^8.2.1
+  # http: ^0.13.5
+  # shared_preferences: ^2.0.18
+  jwt_decoder: ^2.0.1
+  flutter_slidable: ^2.0.0
+  velocity_x: ^3.6.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -55,6 +68,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -94,6 +112,22 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
+  fonts:
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Ubuntu-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Ubuntu-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Ubuntu-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Ubuntu-Italic.ttf
+          style: italic
+
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

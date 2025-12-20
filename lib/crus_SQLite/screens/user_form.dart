@@ -154,7 +154,7 @@ class _UserFormState extends State<UserForm> {
                 validator: (v) => v!.isEmpty ? 'Select DOB' : null,
               ),
               DropdownButtonFormField<String>(
-                value: gender,
+                initialValue: gender,
                 items: ['Male', 'Female', 'Other']
                     .map((g) => DropdownMenuItem(value: g, child: Text(g)))
                     .toList(),

@@ -5,6 +5,8 @@ void main() {
 }
 
 class AllRoutingApp extends StatelessWidget {
+  const AllRoutingApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,6 +37,8 @@ class AllRoutingApp extends StatelessWidget {
 // 1. HOME PAGE — Demonstrates all routing types
 // ---------------------------------------------------------------
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,6 +113,8 @@ class HomePage extends StatelessWidget {
 // 1. BASIC ROUTING
 // ---------------------------------------------------------------
 class BasicRoutePage extends StatelessWidget {
+  const BasicRoutePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +133,8 @@ class BasicRoutePage extends StatelessWidget {
 // 2. NAMED ROUTE
 // ---------------------------------------------------------------
 class NamedRoutePage extends StatelessWidget {
+  const NamedRoutePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,7 +154,7 @@ class NamedRoutePage extends StatelessWidget {
 // ---------------------------------------------------------------
 class DynamicRoutePage extends StatelessWidget {
   final String message;
-  DynamicRoutePage({required this.message});
+  const DynamicRoutePage({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +171,8 @@ class DynamicRoutePage extends StatelessWidget {
 // 4. PUSH REPLACEMENT
 // ---------------------------------------------------------------
 class ReplacementPage extends StatelessWidget {
+  const ReplacementPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,6 +194,8 @@ class ReplacementPage extends StatelessWidget {
 // 5. PUSH & REMOVE UNTIL
 // ---------------------------------------------------------------
 class FinalPage extends StatelessWidget {
+  const FinalPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,6 +221,8 @@ class FinalPage extends StatelessWidget {
 // ---------------------------------------------------------------
 class SendDataPage extends StatelessWidget {
   final ctrl = TextEditingController();
+
+  SendDataPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -6,11 +6,11 @@ class InfoCard extends StatelessWidget {
   final Color color;
 
   const InfoCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.value,
     this.color = Colors.blue, // default value
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +38,8 @@ class InfoCard extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,10 +67,10 @@ class LabelText extends StatelessWidget {
   final IconData? icon;
 
   const LabelText({
-    Key? key,
+    super.key,
     required this.text,
     this.icon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -88,8 +90,7 @@ class ActionButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const ActionButton({Key? key, required this.text, required this.onPressed})
-    : super(key: key);
+  const ActionButton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

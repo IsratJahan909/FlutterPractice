@@ -5,6 +5,8 @@ void main() {
 }
 
 class ECommerceApp extends StatelessWidget {
+  const ECommerceApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +20,8 @@ class ECommerceApp extends StatelessWidget {
 
 // ---------------- Home Page ----------------
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -141,8 +145,9 @@ class _HomePageState extends State<HomePage> {
                             product: product,
                             onFavorite: () {
                               setState(() {
-                                if (!favorites.contains(product))
+                                if (!favorites.contains(product)) {
                                   favorites.add(product);
+                                }
                               });
                             },
                           ),
@@ -300,6 +305,8 @@ class FavoritesPage extends StatelessWidget {
 
 // ---------------- Profile Page ----------------
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

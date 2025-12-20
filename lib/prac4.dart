@@ -8,6 +8,8 @@ void main() {
 }
 
 class MyWidgetsDemo extends StatelessWidget {
+  const MyWidgetsDemo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,6 +27,8 @@ void showMessage(BuildContext context, String msg) {
 
 class DemoPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
+
+  DemoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -342,6 +346,8 @@ class DemoPage extends StatelessWidget {
 }
 
 class InputHomePage extends StatefulWidget {
+  const InputHomePage({super.key});
+
   @override
   State<InputHomePage> createState() => _InputHomePageState();
 }

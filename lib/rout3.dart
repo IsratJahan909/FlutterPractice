@@ -8,6 +8,8 @@ void main() {
 // MyApp (StatelessWidget)
 // ---------------------------
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
 // HomePage (StatelessWidget)
 // ---------------------------
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +75,8 @@ class HomePage extends StatelessWidget {
 // AboutPage (StatefulWidget)
 // ---------------------------
 class AboutPage extends StatefulWidget {
+  const AboutPage({super.key});
+
   @override
   _AboutPageState createState() => _AboutPageState();
 }
@@ -117,6 +123,8 @@ class _AboutPageState extends State<AboutPage> {
 // ContactPage (StatefulWidget with arguments)
 // ---------------------------
 class ContactPage extends StatefulWidget {
+  const ContactPage({super.key});
+
   @override
   _ContactPageState createState() => _ContactPageState();
 }

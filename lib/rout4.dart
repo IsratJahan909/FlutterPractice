@@ -8,6 +8,8 @@ void main() {
 // MyApp (StatelessWidget)
 // -------------------------------
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
 // HomePage (StatelessWidget)
 // -------------------------------
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,6 +110,8 @@ class HomePage extends StatelessWidget {
 // AboutPage (StatefulWidget)
 // -------------------------------
 class AboutPage extends StatefulWidget {
+  const AboutPage({super.key});
+
   @override
   _AboutPageState createState() => _AboutPageState();
 }
@@ -145,6 +151,8 @@ class _AboutPageState extends State<AboutPage> {
 // ContactPage (StatefulWidget)
 // -------------------------------
 class ContactPage extends StatefulWidget {
+  const ContactPage({super.key});
+
   @override
   _ContactPageState createState() => _ContactPageState();
 }
@@ -176,7 +184,7 @@ class _ContactPageState extends State<ContactPage> {
 class DynamicPage extends StatefulWidget {
   final String message;
 
-  DynamicPage({required this.message});
+  const DynamicPage({super.key, required this.message});
 
   @override
   _DynamicPageState createState() => _DynamicPageState();
@@ -207,6 +215,8 @@ class _DynamicPageState extends State<DynamicPage> {
 // Bottom Navigation Example (StatefulWidget)
 // -------------------------------
 class BottomNavExample extends StatefulWidget {
+  const BottomNavExample({super.key});
+
   @override
   _BottomNavExampleState createState() => _BottomNavExampleState();
 }

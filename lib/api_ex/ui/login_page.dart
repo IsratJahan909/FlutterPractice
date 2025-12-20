@@ -1,10 +1,8 @@
 // pages/login_page.dart
-import 'package:ay_app/api_ex/auth_service.dart';
-import 'package:ay_app/api_ex/product_api.dart';
-import 'package:ay_app/api_ex/product_list_page.dart';
+import 'package:ay_app/api_ex/services/auth_service.dart';
+import 'package:ay_app/api_ex/ui/product_list_page.dart';
 import 'package:flutter/material.dart';
 
-import '../api_ex/product.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

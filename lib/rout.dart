@@ -6,6 +6,8 @@ void main() {
 }
 
 class MyRoutingApp extends StatelessWidget {
+  const MyRoutingApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,6 +27,8 @@ class MyRoutingApp extends StatelessWidget {
 
 // ---------------- Home Page ----------------
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
 
   void handleMessage(String msg) {
     debugPrint("Callback received: $msg");
@@ -85,6 +89,8 @@ class HomePage extends StatelessWidget {
 
 // ---------------- About Page ----------------
 class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,6 +109,8 @@ class AboutPage extends StatelessWidget {
 
 // ---------------- Profile Page ----------------
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

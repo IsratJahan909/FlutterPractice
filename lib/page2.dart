@@ -11,16 +11,16 @@ class Page2 extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, "/p1", (route) => false);
+                // Navigator.pushNamedAndRemoveUntil(context, "/p1", (route) => false);
               },
               icon: Icon(Icons.account_balance)),
           IconButton(
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, "/p2", (route) => false);
+                // Navigator.pushNamedAndRemoveUntil(context, "/p2", (route) => false);
               },
               icon: Icon(Icons.accessibility)),
           IconButton(onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, "/p3", (route) => false);
+            // Navigator.pushNamedAndRemoveUntil(context, "/p3", (route) => false);
 
           }, icon: Icon(Icons.accessible_forward))
         ],
@@ -38,7 +38,7 @@ class Page2 extends StatelessWidget {
               width: 250,
               child: TextButton(onPressed: (){
 
-                Navigator.pushNamedAndRemoveUntil(context, "/p1", (route) => false);
+                // Navigator.pushNamedAndRemoveUntil(context, "/p1", (route) => false);
 
               }, child: Text("Routing--1")),
             ),
@@ -47,7 +47,7 @@ class Page2 extends StatelessWidget {
               height: 250,
               width: 250,
               child: TextButton(onPressed: (){
-                Navigator.pushNamedAndRemoveUntil(context, "/p2", (route) => false);
+                // Navigator.pushNamedAndRemoveUntil(context, "/p2", (route) => false);
 
               }, child: Text("Routing--2")),
 
@@ -57,7 +57,7 @@ class Page2 extends StatelessWidget {
               height: 250,
               width: 250,
               child: TextButton(onPressed: (){
-                Navigator.pushNamedAndRemoveUntil(context, "/p3", (route) => false);
+                // Navigator.pushNamedAndRemoveUntil(context, "/p3", (route) => false);
 
               }, child: Text("Routing--3")),
 
