@@ -22,9 +22,27 @@ class _UserFormState extends State<UserForm> {
   final dobCtrl = TextEditingController();
 
   String gender = 'Male';
+  String? country; // New field
   bool isActive = true;
   String dob = '';
   File? _image;
+
+  // Short list of countries (you can make it longer or use a package)
+  final List<String> countries = [
+    'Bangladesh',
+    'India',
+    'Pakistan',
+    'United States',
+    'United Kingdom',
+    'Canada',
+    'Australia',
+    'Germany',
+    'France',
+    'Japan',
+    'China',
+    'Brazil',
+    'Other',
+  ];
 
   @override
   void initState() {
@@ -37,6 +55,7 @@ class _UserFormState extends State<UserForm> {
       dob = widget.user!.dob;
       dobCtrl.text = dob;
       isActive = widget.user!.isActive;
+      country = widget.user!.country; // Assuming you add country to User model
 
       if (widget.user!.imagePath != null) {
         _image = File(widget.user!.imagePath!);
@@ -83,12 +102,13 @@ class _UserFormState extends State<UserForm> {
 
     final user = User(
       id: widget.user?.id,
-      name: nameCtrl.text,
-      email: emailCtrl.text,
-      age: int.parse(ageCtrl.text),
+      name: nameCtrl.text.trim(),
+      email: emailCtrl.text.trim(),
+      age: int.tryParse(ageCtrl.text.trim()) ?? 0,
       gender: gender,
       dob: dob,
       isActive: isActive,
+      country: country ?? '', // New field
       imagePath: _image?.path,
     );
 
@@ -99,75 +119,193 @@ class _UserFormState extends State<UserForm> {
       await db.updateUser(user);
     }
 
-    Navigator.pop(context);
+    if (mounted) {
+      Navigator.pop(context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('User Form')),
-      body: Padding(
+      appBar: AppBar(
+        title: const Text('User Form'),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
-          child: ListView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: pickImage,
-                child: Center(
-                  child: _image != null
-                      ? CircleAvatar(
-                          radius: 50,
-                          backgroundImage: FileImage(_image!),
+              // Profile Image Picker
+              Center(
+                child: GestureDetector(
+                  onTap: pickImage,
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      CircleAvatar(
+                        radius: 60,
+                        backgroundColor: Colors.grey[300],
+                        backgroundImage: _image != null ? FileImage(_image!) : null,
+                        child: _image == null
+                            ? const Icon(
+                          Icons.person,
+                          size: 60,
+                          color: Colors.grey,
                         )
-                      : CircleAvatar(
-                          radius: 50,
-                          child: const Icon(Icons.camera_alt, size: 40),
+                            : null,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
                         ),
+                        child: const Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 32),
+
+              // Name
               TextFormField(
                 controller: nameCtrl,
-                decoration: const InputDecoration(labelText: 'Name'),
-                validator: (v) => v!.isEmpty ? 'Required' : null,
+                decoration: const InputDecoration(
+                  labelText: 'Full Name',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.person),
+                ),
+                textCapitalization: TextCapitalization.words,
+                validator: (v) => (v?.trim().isEmpty ?? true) ? 'Name is required' : null,
               ),
+              const SizedBox(height: 16),
+
+              // Email
               TextFormField(
                 controller: emailCtrl,
-                decoration: const InputDecoration(labelText: 'Email'),
-                validator: (v) => v!.isEmpty || !v.contains('@') ? 'Invalid Email' : null,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: (v) {
+                  if (v == null || v.trim().isEmpty) return 'Email is required';
+                  if (!v.contains('@') || !v.contains('.')) return 'Invalid email';
+                  return null;
+                },
               ),
+              const SizedBox(height: 16),
+
+              // Age
               TextFormField(
                 controller: ageCtrl,
+                decoration: const InputDecoration(
+                  labelText: 'Age',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.calendar_today),
+                ),
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Age'),
-                validator: (v) => v!.isEmpty || int.tryParse(v) == null ? 'Invalid Age' : null,
+                validator: (v) {
+                  if (v == null || v.trim().isEmpty) return 'Age is required';
+                  if (int.tryParse(v) == null || int.parse(v) < 1) return 'Invalid age';
+                  return null;
+                },
               ),
+              const SizedBox(height: 16),
+
+              // Date of Birth
               TextFormField(
                 controller: dobCtrl,
                 readOnly: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Date of Birth',
-                  suffixIcon: Icon(Icons.calendar_today),
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.event),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.calendar_today),
+                    onPressed: pickDate,
+                  ),
                 ),
-                onTap: pickDate,
-                validator: (v) => v!.isEmpty ? 'Select DOB' : null,
+                validator: (v) => (v?.isEmpty ?? true) ? 'Please select DOB' : null,
               ),
+              const SizedBox(height: 16),
+
+              // Gender - Radio Buttons
+              const Text(
+                'Gender',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: ['Male', 'Female', 'Other'].map((g) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Radio<String>(
+                        value: g,
+                        groupValue: gender,
+                        onChanged: (value) {
+                          if (value != null) {
+                            setState(() => gender = value);
+                          }
+                        },
+                      ),
+                      Text(g),
+                    ],
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 16),
+
+              // Country Dropdown
               DropdownButtonFormField<String>(
-                initialValue: gender,
-                items: ['Male', 'Female', 'Other']
-                    .map((g) => DropdownMenuItem(value: g, child: Text(g)))
+                value: country,
+                decoration: const InputDecoration(
+                  labelText: 'Country',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.public),
+                ),
+                items: countries
+                    .map((c) => DropdownMenuItem(value: c, child: Text(c)))
                     .toList(),
-                onChanged: (v) => setState(() => gender = v!),
-                decoration: const InputDecoration(labelText: 'Gender'),
+                onChanged: (value) {
+                  setState(() => country = value);
+                },
+                validator: (v) => v == null ? 'Please select a country' : null,
               ),
+              const SizedBox(height: 16),
+
+              // Active Switch
               SwitchListTile(
                 value: isActive,
-                title: const Text('Active'),
+                title: const Text('User is Active'),
+                subtitle: const Text('Enable/disable user account'),
+                secondary: const Icon(Icons.verified_user),
                 onChanged: (v) => setState(() => isActive = v),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(onPressed: saveUser, child: const Text('SAVE')),
+              const SizedBox(height: 32),
+
+              // Save Button
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.save),
+                  label: const Text('SAVE USER', style: TextStyle(fontSize: 16)),
+                  onPressed: saveUser,
+                ),
+              ),
+              const SizedBox(height: 40),
             ],
           ),
         ),

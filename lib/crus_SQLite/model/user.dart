@@ -6,7 +6,8 @@ class User {
   String gender;
   String dob;
   bool isActive;
-  String? imagePath; // new field
+  String? imagePath;
+  String? country;// new field
 
   User({
     this.id,
@@ -17,6 +18,7 @@ class User {
     required this.dob,
     required this.isActive,
     this.imagePath,
+    this.country,
   });
 
   Map<String, dynamic> toMap() {
@@ -29,6 +31,7 @@ class User {
       'dob': dob,
       'isActive': isActive ? 1 : 0,
       'imagePath': imagePath,
+      'country': country,
     };
   }
 
@@ -42,6 +45,7 @@ class User {
       dob: map['dob'],
       isActive: map['isActive'] == 1,
       imagePath: map['imagePath'],
+      country: map['country'],
     );
   }
 }

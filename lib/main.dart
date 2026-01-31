@@ -1,3 +1,4 @@
+import 'package:ay_app/crus_SQLite/screens/user_form.dart';
 import 'package:ay_app/page1.dart';
 import 'package:ay_app/page2.dart';
 import 'package:ay_app/page3.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       darkTheme: ThemeData(primarySwatch: Colors.green),
-      home: Practice2(),
+      home: const UserForm(),
       // initialRoute: "/p1",
       //  initialRoute: (token != null && JwtDecoder.isExpired(token) == false )?"/dash":"/login",
       // routes: {
